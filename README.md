@@ -1,10 +1,12 @@
-SEDA-ML-Summarization-vagrant-config
-====================================
+SEDA-general-vagrant-config
+========================
 
-The vagrant configuration for the SEDA-ML-Summarization component.
+General vagrant configuration for SEDA components.
 
-To enter the virtual environment, make sure you have vagrant installed. If not, read this: http://docs.vagrantup.com/v2/installation/index.html
+In order to get started install the latest version of Vagrant from http://downloads.vagrantup.com/.
 
-Then, run "vagrant up" when in the directory with the vagrantfile in it.
+Run "git clone git@github.com:S-E-D-A/SEDA-general-vagrant-config.git".
 
-Then, run "vagrant ssh" and you're in! There should be a src folder where all code will reside.
+From within this repository run "vagrant up" and after the steps have completed "vagrant ssh".
+
+You are now ready to develop in the "source" folder.
