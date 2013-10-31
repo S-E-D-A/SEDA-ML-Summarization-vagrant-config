@@ -53,3 +53,22 @@ fi
 cd solr-4.3.1/example
 # Run Solr using the Jetty server
 java -jar start.jar &
+
+# Python
+apt-get install -y curl
+apt-get install -y zlib1g-dev libbz2-dev libreadline-dev libgdbm-dev libssl-dev libsqlite3-dev
+apt-get install -y python python-setuptools python-dev
+apt-get install -y python-numpy python-scipy python-matplotlib ipython ipython-notebook python-pandas python-sympy python-nose
+apt-get install -y python-software-properties
+
+easy_install pip
+
+pip install jinja2
+pip install vincent
+pip install virtualenv
+pip install pythonbrew
+pip install pandas
+pip install matplotlib
+pip install IPython
+pip install SciPy
+pip install Theano
