@@ -63,6 +63,7 @@ apt-get install -y python-software-properties
 
 easy_install pip
 
+pip install ipython[all]
 pip install jinja2
 pip install vincent
 pip install virtualenv
@@ -71,4 +72,7 @@ pip install pandas
 pip install matplotlib
 pip install IPython
 pip install SciPy
-pip install Theano
+pip install theano
+
+# Run IPython
+sudo -u vagrant ipython notebook --no-browser --ip=0.0.0.0 --notebook-dir=/home/vagrant/source &
