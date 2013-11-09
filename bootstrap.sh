@@ -30,7 +30,7 @@ PTI="${PTI} vim"
 PTI="${PTI} curl zlib1g-dev libbz2-dev libreadline-dev libgdbm-dev libssl-dev \
 libsqlite3-dev python python-setuptools python-dev python-numpy python-scipy python-matplotlib \
 ipython ipython-notebook python-pandas python-sympy python-nose \
-python-pip g++ python-software-properties libopenblas-base libopenblas-dev liblapack-dev \
+g++ python-software-properties libopenblas-base libopenblas-dev liblapack-dev \
 gfortran libfreetype6-dev"
 
 # Bring apt-get up to date
@@ -39,25 +39,27 @@ apt-get update
 # Remove libatlas because Theanos requires blas, and it is faster
 apt-get --purge -y remove libatlas3gf-base libatlas-dev
 
+# Install all the apt-get packages
+apt-get install -y ${PTI}
+
+####### Python ##########  
+   
+# Upgrade older Ubuntu packages to most recent PyPi versions
+# Sequence matters
+easy_install pip
+pip install --upgrade setuptools
+pip install --upgrade pip
+pip install --upgrade ipython[all] numpy jinja2 vincent virtualenv pythonbrew pandas scimath SciPy matplotlib
+pip install --upgrade theano
+
 # Switch symlink from libatlas to libopenblas
 # Manually this would be done with commmand
 # update-alternatives --config libblas.so.3gf < Option 2: /usr/lib/lapack/liblapack.so.3gf 
 rm -rf /usr/lib/liblapack.so.3gf
 ln -s /usr/lib/lapack/liblapack.so.3gf /usr/lib/liblapack.so.3gf
 
-# Install all the apt-get packages
-apt-get install -y ${PTI}
- 
-####### Python ##########  
-   
-# Upgrade older Ubuntu packages to most recent PyPi versions
-# Sequence matters
-pip install distribute --upgrade
-pip install ipython[all] numpy jinja2 vincent virtualenv pythonbrew pandas scimath SciPy matplotlib  --upgrade
-pip install theano --upgrade
-
 # Insert cludge to fix Theano imports
-sed -i '134iimport numpy.distutils.__config__' /usr/local/lib/python2.7/dist-packages/theano/tensor/blas.py 
+sed -i '130iimport numpy.distutils.__config__' /usr/local/lib/python2.7/dist-packages/theano/tensor/blas.py
 
 ####### Source directory #########
 
@@ -98,30 +100,7 @@ cd /home/vagrant/solr-${SOLR_VERSION}/example/
 # Run Solr using the Jetty server
 java -jar start.jar &
 
-<<<<<<< HEAD
 # Run IPython
 ipython notebook --no-browser --ip=0.0.0.0 --notebook-dir=/home/vagrant/source &
-=======
-# Python
-apt-get install -y curl
-apt-get install -y zlib1g-dev libbz2-dev libreadline-dev libgdbm-dev libssl-dev libsqlite3-dev
-apt-get install -y python python-setuptools python-dev
-apt-get install -y python-numpy python-scipy python-matplotlib ipython ipython-notebook python-pandas python-sympy python-nose
-apt-get install -y python-software-properties
 
-easy_install pip
 
-pip install ipython[all]
-pip install jinja2
-pip install vincent
-pip install virtualenv
-pip install pythonbrew
-pip install pandas
-pip install matplotlib
-pip install IPython
-pip install SciPy
-pip install theano
-
-# Run IPython
-sudo -u vagrant ipython notebook --no-browser --ip=0.0.0.0 --notebook-dir=/home/vagrant/source &
->>>>>>> 5d713e78b29dcf2eefe9c0e9f8bd60559978b6a3

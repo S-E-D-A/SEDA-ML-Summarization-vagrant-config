@@ -22,9 +22,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Generic tools install
   config.vm.provision :shell, :path => "bootstrap.sh"
 
-  # Install Octave (Matlab clone)
-  config.vm.provision :shell, :path => "installOctave.sh"
-
   # The url from where the 'config.vm.box' box will be fetched if it
   # doesn't already exist on the user's system.
   # config.vm.box_url = "http://domain.com/path/to/above.box"
