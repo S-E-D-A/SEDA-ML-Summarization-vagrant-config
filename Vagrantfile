@@ -11,6 +11,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # Every Vagrant virtual environment requires a box to build off of.
   config.vm.box = "precise64"
+  
+  # Detect which package installs to cache
+  config.cache.auto_detect = true
+  # Limit scope to one machine
+  config.cache.scope = :machine
+  # Hard enable apt
+  config.cache.enable :apt
 
   # Generic tools install
   config.vm.provision :shell, :path => "bootstrap.sh"
