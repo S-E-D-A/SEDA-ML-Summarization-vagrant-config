@@ -73,9 +73,16 @@ fi
 
 ####### Solr install #########
 
+# Create directory for solr in persistent folder
+mkdir -p /home/vagrant/source/solr
+# Go in it
+cd /home/vagrant/source/solr
+# Variable for Solr installed flag
+DOT_SOLR_INSTALLED=/home/vagrant/source/solr/.solrinstalled
+
 # Download Solr and install only if it's the first time provisioning
 # indicated by whether or not .solrinstalled is present in / directory
-if [ ! -f /.solrinstalled ]; then
+if [ ! -f ${DOT_SOLR_INSTALLED} ]; then
   # Download
   wget ${SOLR_BUILD_URL}
   # Unzip
@@ -83,7 +90,7 @@ if [ ! -f /.solrinstalled ]; then
   # Remove the compressed file
   rm solr-${SOLR_VERSION}.tgz
   # Write file to indicate Solr has been installed
-  touch /.solrinstalled
+  touch ${DOT_SOLR_INSTALLED}
 
   echo "Provisioning Solr."
 else
@@ -94,8 +101,8 @@ fi
 ###### Start Solr and IPython notebook #########
 
 # Enter the Jetty jar server directory
-cd /home/vagrant/
-cd /home/vagrant/solr-${SOLR_VERSION}/example/
+cd /home/vagrant/source/solr/
+cd /home/vagrant/source/solr/solr-${SOLR_VERSION}/example/
 
 # Run Solr using the Jetty server
 java -jar start.jar &
