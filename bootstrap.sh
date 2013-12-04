@@ -105,7 +105,7 @@ cd /home/vagrant/source/solr/
 cd /home/vagrant/source/solr/solr-${SOLR_VERSION}/example/
 
 # Run Solr using the Jetty server
-java -jar start.jar &
+java -Xmx3012m -jar start.jar &
 
 # Run IPython
 ipython notebook --no-browser --ip=0.0.0.0 --notebook-dir=/home/vagrant/source &
