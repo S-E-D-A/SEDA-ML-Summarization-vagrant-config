@@ -108,6 +108,6 @@ cd /home/vagrant/source/solr/solr-${SOLR_VERSION}/example/
 java -Xmx3012m -jar start.jar &
 
 # Run IPython
-ipython notebook --no-browser --ip=0.0.0.0 --notebook-dir=/home/vagrant/source --pylab=inline &
+ipython notebook --no-browser --ip=0.0.0.0 --notebook-dir=/home/vagrant/source --pylab=inline --script &
 
 
