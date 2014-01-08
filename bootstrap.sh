@@ -47,7 +47,7 @@ apt-get install -y ${PTI}
 # Upgrade older Ubuntu packages to most recent PyPi versions
 # Sequence matters
 easy_install pip
-pip install --upgrade setuptools
+pip install --upgrade setuptools --no-use-wheel
 pip install --upgrade pip
 pip install --upgrade ipython[all] numpy jinja2 vincent virtualenv pythonbrew pandas scimath SciPy matplotlib
 pip install --upgrade theano
