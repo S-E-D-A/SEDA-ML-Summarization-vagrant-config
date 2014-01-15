@@ -49,6 +49,12 @@ apt-get install -y ${PTI}
 easy_install pip
 pip install --upgrade setuptools --no-use-wheel
 pip install --upgrade pip
+pip install --upgrade cython
+
+# Install scimath and numpy, these components are at the bottom
+# as they tend to cause problems and should crash at the end to avoid reprovisioning
+pip install --upgrade numpy
+/usr/local/bin/easy_install scimath
 pip install --upgrade ipython[all] jinja2 vincent virtualenv pythonbrew pandas SciPy matplotlib
 pip install --upgrade theano
 
@@ -110,7 +116,4 @@ java -Xmx3012m -jar start.jar &
 # Run IPython
 ipython notebook --no-browser --ip=0.0.0.0 --notebook-dir=/home/vagrant/source --pylab=inline --script &
 
-# Install scimath and numpy, these components are at the bottom
-# as they tend to cause problems and should crash at the end to avoid reprovisioning
-pip install --upgrade numpy
-/usr/local/bin/easy_install scimath
+
