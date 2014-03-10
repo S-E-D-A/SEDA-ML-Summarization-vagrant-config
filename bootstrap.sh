@@ -5,7 +5,11 @@
 ##
 
 # To display detailed information when executing this script
-set -ex
+# If SEDA_TS_VAGRANT_DEBUG_MODE
+if [ ! -z ${SEDA_TS_VAGRANT_DEBUG_MODE} ]
+then
+    set -ex
+fi
 
 # The build of Solr to obtain
 SOLR_VERSION=4.5.1
@@ -107,7 +111,6 @@ fi
 ###### Start Solr and IPython notebook #########
 
 # Enter the Jetty jar server directory
-cd /home/vagrant/source/solr/
 cd /home/vagrant/source/solr/solr-${SOLR_VERSION}/example/
 
 # Run Solr using the Jetty server
@@ -115,5 +118,3 @@ java -Xmx3012m -jar start.jar &
 
 # Run IPython
 ipython notebook --no-browser --ip=0.0.0.0 --notebook-dir=/home/vagrant/source --pylab=inline --script &
-
-
