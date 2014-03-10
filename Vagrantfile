@@ -11,7 +11,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # Every Vagrant virtual environment requires a box to build off of.
   config.vm.box = "precise64"
-  
+ 
+  if !Vagrant.has_plugin?("vagrant-cachier")
+    abort("Please first run 'vagrant plugin install vagrant-cachier'")
+  end
+
   # Detect which package installs to cache
   config.cache.auto_detect = true
   # Limit scope to one machine
@@ -29,7 +33,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
-  config.vm.network :forwarded_port, guest: 80, host: 8080
+  # config.vm.network :forwarded_port, guest: 80, host: 8080
   # Port for Solr
   config.vm.network :forwarded_port, guest: 8983, host: 18983
   # Port for IPython notebook
@@ -60,11 +64,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Example for VirtualBox:
   #
   config.vm.provider :virtualbox do |vb|
-  #   # Don't boot with headless mode
-  #   vb.gui = true
-  #
-  #   # Use VBoxManage to customize the VM. For example to change memory:
-  	vb.customize ["modifyvm", :id, "--memory", "3024"]
+     vb.name = "SEDA-ML-TextSummarization"
+     vb.customize ["modifyvm", :id, "--memory", "3024"]
   end
   #
   # View the documentation for the provider you're using for more
